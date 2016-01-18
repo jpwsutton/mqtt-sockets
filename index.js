@@ -1,7 +1,7 @@
 var fs = require('fs');
 var mqtt    = require('mqtt');
 var path  = require('path');
-
+var rcswitch = require('rcswitch');
 
 var configurationFile = 'config.json';
 
@@ -10,6 +10,8 @@ console.log('mqtt-sockets starting.');
 var configuration = JSON.parse(fs.readFileSync(configurationFile));
 
 var topicMap = {};
+
+rcswitch.enableTransmit(configuration.transmitterPin);
 
 // First we want to get our MQTT Connection ready
 var opts = {};
@@ -60,22 +62,30 @@ client.on('message', function (topic, message) {
   // Get the socket that this is for
   var socket = topicMap[topic];
   console.log('Message Arrived for socket: ' + socket.name + ' : ' + message.toString());
-  var msg = JSON.parse(message.toString);
+  var msg = JSON.parse(message.toString());
 
 
   if(socket.type === 'RAW'){
     if(msg.state === 1){
       // Turn on command
-      //socket.OnCommand;
+      console.log('Turning on ' + socket.name);
+      rcswitch.send(socket.onCommand);
+      rcswitch.send(socket.onCommand);
     } else {
       // Turn off command
-      // socket.OffCommand;
+      console.log('Turning off ' + socket.name);
+      rcswitch.send(socket.offCommand);
+      rcswitch.send(socket.offCommand);
     }
   } else if ( socket.type === 'B'){
     if(msg.state === 1){
       // Turn on
+      rcswitch.switchOn(socket.group, socket.switch);
+     rcswitch.switchOn(socket.group, socket.switch);
     } else {
       // Turn off
+      rcswitch.switchOff(socket.group, socket.switch);
+      rcswitch.switchOff(socket.group, socket.switch);
     }
   }
 

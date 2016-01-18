@@ -22,6 +22,7 @@
   "homepage": "https://github.com/jpwsutton/mqtt-sockets#readme",
   "dependencies": {
     "mqtt": "^1.6.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rcswitch": "^0.2.3"
   }
 }
