@@ -1,10 +1,10 @@
 {
   "transmitterPin" : 0,
   "mqttConfig" : {
-    "server" : "***REMOVED***",
+    "server" : "iot.eclipse.org",
     "port"   : 1883,
-    "username" : "***REMOVED***",
-    "password" : "***REMOVED***",
+    "username" : "username",
+    "password" : "password",
     "clientId" : "mqtt_sockets"
     },
 
