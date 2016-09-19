@@ -2,41 +2,36 @@
   "transmitterPin" : 0,
   "mqttConfig" : {
     "server" : "iot.eclipse.org",
-    "port"   : 1883,
+    "port"   : 8883,
     "username" : "username",
     "password" : "password",
-    "clientId" : "mqtt_sockets"
+    "clientId" : "mqtt_sockets",
+    "cafile"   : "chain-ca.pem"
     },
-
-    "sockets" : [
-      {
+    "sockets" : {
+      "/home/livingroom/sockets/sidelamp" : {
         "name" : "Livingroom Side Lamp",
-        "topic" : "/home/livingroom/sockets/sidelamp",
         "type" : "B",
         "group" : 1,
         "switch" : 4
       },
-	{
-        "name" : "Bedroom Bedside Lamp",
-        "topic" : "/home/bedroom/sockets/bedsideLamp",
-        "type" : "B",
-        "group" : 1,
-        "switch" : 1
-      },
-      {
+      "/home/bedroom/sockets/bedsideLamp" :{
+            "name" : "Bedroom Bedside Lamp",
+            "type" : "B",
+            "group" : 1,
+            "switch" : 1
+          },
+      "/home/bedroom/sockets/bottle" : {
         "name" : "Bedroom Bottle Lamp",
-        "topic" : "/home/bedroom/sockets/bottle",
         "type" : "B",
         "group" : 1,
         "switch" : 2
       },
-      {
+      "/home/livingroom/sockets/workbenchLight" : {
         "name" : "Livingroom Workbench Light",
-        "topic" : "/home/livingroom/sockets/workbenchLight",
         "type"  : "RAW",
         "onCommand" : "010011010100110001101111",
         "offCommand" : "010011010100110001100111"
       }
-    ]
+    }
 }
-
